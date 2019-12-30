@@ -17,7 +17,8 @@ options = webdriver.ChromeOptions()
 # options.add_argument(
 #     "--enable-features=SameSiteByDefaultCookies,CookiesWithoutSameSiteMustBeSecure")
 options.add_argument("--incognito")
-driver = webdriver.Chrome(executable_path="../chromedriver", options=options)
+driver = webdriver.Chrome(
+    executable_path="../chromedriver.exe", options=options)
 url = "https://tioanime.com/directorio"
 driver.get(url)
 
@@ -77,7 +78,7 @@ for i in range(1, last_page):
 
         dict_anime_info = {"Title": title,
                            "Categories": categories, "Synopsis": synopsis, "Episodes": caps_info}
-        # print(dict_anime_info)
+        print('Scraped:' + title)
 
         writeToJSONFile('./JSON', title, dict_anime_info)
 
@@ -89,5 +90,6 @@ for i in range(1, last_page):
 
     next_page.click()
 writeToJSONFile('./JSON', 'TioAnime', anime_info)
-print(anime_info)
+# print(anime_info)
+print('TERMINADO')
 driver.quit()
